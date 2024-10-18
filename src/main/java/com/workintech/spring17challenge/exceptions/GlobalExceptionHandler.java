@@ -15,4 +15,11 @@ public class GlobalExceptionHandler {
         ApiErrorResponse apiResponse = new ApiErrorResponse(exception.getMessage(), System.currentTimeMillis(), exception.getHttpStatus());
         return new ResponseEntity(apiResponse , exception.getHttpStatus());
     }
+
+
+    @ExceptionHandler ResponseEntity<ApiErrorResponse> wholeExceptionHandler(ApiException exception){
+        ApiErrorResponse response = new ApiErrorResponse(exception.getMessage() , System.currentTimeMillis() , exception.getHttpStatus());
+
+        return new ResponseEntity<>(response , exception.getHttpStatus());
+    }
 }
